@@ -8,19 +8,19 @@
 # > sudo docker run -p 9080:9080 -tid -v ${PROJECT_DIR}:/scrapyrt/project scrapyrt
 #
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
     apt-get install -y python3 python3-dev  \
-    libffi-dev libxml2-dev libxslt1-dev zlib1g-dev libssl-dev wget
+    libffi-dev libxml2-dev libxslt1-dev zlib1g-dev libssl-dev gcc wget
 
 RUN mkdir -p /scrapyrt/src /scrapyrt/project
 RUN mkdir -p /var/log/scrapyrt
 
 RUN wget -O /tmp/get-pip.py "https://bootstrap.pypa.io/get-pip.py" && \
-    python3 /tmp/get-pip.py "pip==19.3.1" && \
+    python3 /tmp/get-pip.py "pip==20.2.3" && \
     rm /tmp/get-pip.py
 
 ADD . /scrapyrt/src
